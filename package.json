@@ -1,0 +1,11 @@
+{
+  "name": "virtual-dom",
+  "version": "0.0.0",
+  "description": "My implementation of a virtual DOM. Only updates the actual DOM when necessary.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Juan Carlos Medina",
+  "license": "MIT"
+}
