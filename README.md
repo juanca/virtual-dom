@@ -6,6 +6,7 @@ Only updates the actual DOM when necessary.
 ## Why do this?
 
 Just experimenting.
+If you are so inclined to check this out: `npm install && npm start` will set you up the package.
 
 ## How does it work?
 
