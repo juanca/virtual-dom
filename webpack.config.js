@@ -1,6 +1,6 @@
 module.exports = {
   entry: {
-    nodeSerializerSpec: './src/node-serializer-spec.js',
+    indexSpec: './index-spec.js',
   },
   output: '[name].js',
 };
