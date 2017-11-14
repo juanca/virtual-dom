@@ -3,7 +3,7 @@ export default function nodeSerializer(node) {
 
   for(let i = 0; i < node.attributes.length; i += 1) {
     const attribute = node.attributes.item(i);
-    customAttributes[attribute.name] = attribute.value;
+    customAttributes[attribute.name] = node[attribute.name];
   }
 
   return {
