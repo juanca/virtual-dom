@@ -10,6 +10,7 @@ const virtualNodeToCreate = nodeSerializer(nodeToCreate);
 
 console.log('Empty DOM should create a new node', virtualToDomPainter(virtualNodeToCreate, undefined));
 
+
 const expectedNodeToUpdate = window.document.createElement('a');
 expectedNodeToUpdate.href = 'http://www.google.com';
 expectedNodeToUpdate.textContent = 'Visit Google!!!';
