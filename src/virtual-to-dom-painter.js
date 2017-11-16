@@ -1,5 +1,6 @@
 import virtualToDomCreator from './virtual-to-dom-creator.js';
 import virtualToDomUpdater from './virtual-to-dom-updater.js';
+import virtualVsDomShape from './virtual-vs-dom-shape.js';
 
 /*
  * Use it or lose it approach
@@ -10,5 +11,11 @@ import virtualToDomUpdater from './virtual-to-dom-updater.js';
  */
 
 export default function virtualToDomPainter(virtualNode, domNode) {
-  return virtualToDomCreator(virtualNode);
+  const domDiff = virtualVsDomShape(virtualNode, domNode);
+
+  if (domDiff === undefined || domDiff.tagName) {
+    return virtualToDomCreator(virtualNode);
+  } else {
+    return virtualToDomUpdater(virtualNode, domNode);
+  }
 }
