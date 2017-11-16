@@ -1,4 +1,4 @@
-const unwritableProperties = ['tagName'];
+const unwritableProperties = ['tagName', 'childNodes'];
 
 export default function virtualToDomUpdater(diffShape, actualNode) {
   Object.keys(diffShape)

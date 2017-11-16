@@ -13,9 +13,17 @@ import virtualVsDomShape from './virtual-vs-dom-shape.js';
 export default function virtualToDomPainter(virtualNode, domNode) {
   const domDiff = virtualVsDomShape(virtualNode, domNode);
 
-  if (domDiff === undefined || domDiff.tagName) {
-    return virtualToDomCreator(virtualNode);
-  } else {
-    return virtualToDomUpdater(virtualNode, domNode);
-  }
+  const rootNode = (domDiff === undefined || domDiff.tagName) ?
+    virtualToDomCreator(virtualNode) :
+    virtualToDomUpdater(virtualNode, domNode);
+
+  virtualNode.childNodes.forEach((virtualChild, i) => {
+    const childNode = virtualToDomPainter(virtualChild, domNode.childNodes[i]);
+
+    if (childNode !== domNode.childNodes[i]) {
+      domNode.replaceChild(childNode, domNode.childNodes[i]);
+    }
+  });
+
+  return rootNode;
 }
