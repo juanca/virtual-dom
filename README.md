@@ -62,6 +62,12 @@ const vDOM = {
 
 The virtual DOM algorithm does not efficiently reconcile reordered lists.
 
+The node serializer does not serialize event handlers.
+There appears to be missing functionality on identifying event handlers.
+Easiest solution would be to check every possible event handler.
+However, if the virtual DOM tree has a key-value for an event handler,
+it will apply the attribute to the DOM node.
+
 ## What can be improved
 
 The virtual DOM algorithm can better utilize `NODE_TYPE` values.
