@@ -18,10 +18,14 @@ export default function virtualToDomPainter(virtualNode, domNode) {
     virtualToDomUpdater(virtualNode, domNode);
 
   virtualNode.childNodes.forEach((virtualChild, i) => {
-    const childNode = virtualToDomPainter(virtualChild, domNode.childNodes[i]);
+    const childNode = virtualToDomPainter(virtualChild, rootNode.childNodes[i]);
 
-    if (childNode !== domNode.childNodes[i]) {
-      domNode.replaceChild(childNode, domNode.childNodes[i]);
+    if (childNode !== rootNode.childNodes[i]) {
+      if (rootNode.childNodes[i] === undefined) {
+        rootNode.appendChild(childNode);
+      } else {
+        rootNode.replaceChild(childNode, rootNode.childNodes[i]);
+      }
     }
   });
 
