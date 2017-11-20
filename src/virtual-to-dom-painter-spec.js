@@ -41,4 +41,26 @@ console.log('DOM node should update parent node', updatedParentNode, updatedPare
 console.log('DOM node should create child node', parentNode.children[0]);
 
 
+const expectedDeepParentNode = window.document.createElement('div');
+expectedDeepParentNode.className = 'hello';
+
+const deepChildNodeToUpdate = window.document.createElement('div');
+deepChildNodeToUpdate.className = 'world';
+
+expectedDeepParentNode.appendChild(deepChildNodeToUpdate);
+
+const deepChildNodeToCreate = window.document.createElement('a');
+deepChildNodeToCreate.href = 'http://www.google.com';
+deepChildNodeToCreate.textContent = 'Visit Google!!!';
+
+deepChildNodeToUpdate.appendChild(deepChildNodeToCreate);
+const virtualDeepParent = nodeSerializer(expectedDeepParentNode);
+
+const deepParentNode = window.document.createElement('div');
+const updatedDeepParentNode = virtualToDomPainter(virtualDeepParent, deepParentNode);
+
+console.log('DOM node should update deep parent node', updatedDeepParentNode, updatedDeepParentNode === deepParentNode, parentNode.classList.contains('hello'));
+console.log('DOM node should update deep child node', updatedDeepParentNode.childNodes[0], updatedDeepParentNode.childNodes[0] !== deepChildNodeToUpdate, deepChildNodeToUpdate.classList.contains('world'));
+console.log('DOM node should create deep child node', updatedDeepParentNode.childNodes[0].children[0]);
+
 console.groupEnd('virtual-to-dom-painter');
