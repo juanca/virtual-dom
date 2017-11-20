@@ -58,7 +58,11 @@ const vDOM = {
 }
 ```
 
-## Performance considerations
+## What is missing
 
-- Reordering lists will waste resources.
-- Which DOM changes should only be updated vs recreating a new node?
+The virtual DOM algorithm does not efficiently reconcile reordered lists.
+
+## What can be improved
+
+The virtual DOM algorithm can better utilize `NODE_TYPE` values.
+The virtual DOM algorithm should work on an array of virtual DOM trees as well.
