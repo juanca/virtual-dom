@@ -18,10 +18,13 @@ export default function nodeSerializer(node) {
     customAttributes[attribute.name] = node[attribute.name];
   }
 
+  if (node.childNodes.length && node.childNodes[0].nodeType === Node.TEXT_NODE) {
+    customAttributes.textContent = node.childNodes[0].wholeText;
+  }
+
   return {
     childNodes: childrenMap(node.children, nodeSerializer),
     tagName: node.tagName,
-    textContent: node.textContent,
     ...customAttributes,
   };
 }
