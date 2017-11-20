@@ -8,6 +8,36 @@ Only updates the actual DOM when necessary.
 Just experimenting.
 If you are so inclined to check this out: `npm install && npm start` will set you up the package.
 
+## How to use
+
+Given a virtual DOM tree (which can be built or serialized from a DOM fragment):
+
+```
+const virtualDomTree = {
+  className: 'some-class another-class',
+  childNodes: [
+    { recursive dom tree structure },
+    { recursive dom tree structure },
+  ],
+  someProperty: 'someValue',
+}
+```
+
+Apply it to a DOM node with the painter:
+
+```javascript
+import virtualToDomPainter from 'virtual-dom/src/virtual-to-dom-painter.js';
+
+// The painter can create a new DOM node
+const newDomNode = virtualToDomPainter(virtualDomTree);
+
+// The painter can update an existing DOM node
+const newDomNode = virtualToDomPainter(virtualDomTree, someDomNode);
+```
+
+The painter will only update DOM as necessary.
+It creates missing DOM nodes and updates existing DOM nodes, recursively.
+
 ## How does it work?
 
 Virtual tree is compared to the actual DOM.
